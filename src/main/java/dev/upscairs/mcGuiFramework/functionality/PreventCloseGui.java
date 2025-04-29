@@ -1,0 +1,15 @@
+package dev.upscairs.mcGuiFramework.functionality;
+
+import dev.upscairs.mcGuiFramework.wrappers.InteractableGui;
+import dev.upscairs.mcGuiFramework.base.ItemDisplayGui;
+
+/**
+ *
+ * Return this in handleInvClick() to prevent the gui from closing.
+ *
+ */
+public class PreventCloseGui extends InteractableGui {
+    public PreventCloseGui() {
+        super(new ItemDisplayGui());
+    }
+}

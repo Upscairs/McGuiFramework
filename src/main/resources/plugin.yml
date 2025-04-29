@@ -1,0 +1,4 @@
+name: McGuiFramework
+version: '1.0'
+main: dev.upscairs.mcGuiFramework.McGuiFramework
+api-version: '1.21'
