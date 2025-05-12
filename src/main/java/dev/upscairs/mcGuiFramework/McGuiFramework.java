@@ -34,7 +34,7 @@ public final class McGuiFramework  {
         if(!isRegistered) {
             JavaPlugin host = (plugin != null) ? plugin : JavaPlugin.getProvidingPlugin(McGuiFramework.class);
 
-            host.getLogger().severe("McGuiFramework has not been initialized. Please call McGuiFramework.initalize(JavaPlugin) in your plugin's onEnable() method.");
+            host.getLogger().severe("McGuiFramework has not been initialized. Please call McGuiFramework.initalize(JavaPlugin) in your plugins onEnable() method.");
             Bukkit.getPluginManager().disablePlugin(host);
             throw new IllegalStateException("McGuiFramework not initalized.");
         }

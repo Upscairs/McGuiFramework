@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public abstract class ScrollableGui<E extends List<? extends ListableGuiObject>> extends InteractableGui {
+public abstract class PageGui<E extends List<? extends ListableGuiObject>> extends InteractableGui {
 
     private int page;
     private int maxPage;
@@ -18,7 +18,7 @@ public abstract class ScrollableGui<E extends List<? extends ListableGuiObject>>
     private boolean showPageInTitle = false;
     private String rawTitle = "";
 
-    public ScrollableGui(InteractableGui interactableGui, E listedObjects, int page) {
+    public PageGui(InteractableGui interactableGui, E listedObjects, int page) {
         super(interactableGui);
         this.listedObjects = listedObjects;
 
