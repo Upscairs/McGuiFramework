@@ -1,7 +1,7 @@
 package dev.upscairs.mcGuiFramework.functionality;
 
-import dev.upscairs.mcGuiFramework.wrappers.InteractableGui;
 import dev.upscairs.mcGuiFramework.base.ItemDisplayGui;
+import dev.upscairs.mcGuiFramework.wrappers.InteractableGui;
 
 /**
  *
