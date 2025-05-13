@@ -29,13 +29,13 @@ public class GuiInteractionHandler implements Listener {
                 ItemStack clickedItem = event.getCurrentItem();
 
                 if (clickedItem != null && clickedItem.getType() != Material.AIR) {
-                    clickReactGui = clickReactGui.onItemClick(clickedItem.clone());
+                    InventoryGui nextGui = clickReactGui.onItemClick(clickedItem.clone());
 
                     if(clickReactGui == null) {
                         event.getWhoClicked().closeInventory();
                     }
 
-                    event.getWhoClicked().openInventory(clickReactGui.getInventory());
+                    event.getWhoClicked().openInventory(nextGui.getInventory());
                 }
             }
         }

@@ -10,6 +10,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface PlayerInventoryClickReacting extends InventoryGui {
 
-    PlayerInventoryClickReacting onItemClick(ItemStack selectedItem);
+    InventoryGui onItemClick(ItemStack selectedItem);
 
 }

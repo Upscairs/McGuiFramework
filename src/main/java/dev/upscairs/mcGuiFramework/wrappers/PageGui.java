@@ -4,12 +4,22 @@ import dev.upscairs.mcGuiFramework.base.InventoryGui;
 import dev.upscairs.mcGuiFramework.utility.ListableGuiObject;
 import dev.upscairs.mcGuiFramework.utility.InvGuiUtils;
 import org.bukkit.Material;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public abstract class PageGui<E extends List<? extends ListableGuiObject>> extends InteractableGui {
+/**
+ *
+ * A gui that can be used to display a list of items in pages.
+ * If you want to extend this class and want to use handleInvClick, make sure to use setHolder(YourInstance) after super() call.
+ * You need to implement InventoryHolder in your class and call super.handleInvClick(slot) in your overridden method after
+ * your own logic has been executed.
+ *
+ * @param <E> The type of the list of items to be displayed.
+ */
+public class PageGui<E extends List<? extends ListableGuiObject>> extends InteractableGui implements InventoryHolder {
 
     private int page;
     private int maxPage;
@@ -23,6 +33,8 @@ public abstract class PageGui<E extends List<? extends ListableGuiObject>> exten
         this.listedObjects = listedObjects;
 
         maxPage = (listedObjects.size() - 1) / 45;
+
+        setHolder(this);
 
         setPage(page);
 
