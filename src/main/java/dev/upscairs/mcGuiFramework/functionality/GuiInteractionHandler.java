@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class GuiInteractionHandler implements Listener {
@@ -23,9 +24,13 @@ public class GuiInteractionHandler implements Listener {
         //React to clicks on player inventory if Gui is reacting on this
         if(event.getView().getTopInventory().getHolder() instanceof PlayerInventoryClickReacting clickReactGui) {
 
-            event.setCancelled(true);
+            Inventory top = event.getView().getTopInventory();
+            int raw = event.getRawSlot();
 
-            if (event.getClickedInventory().equals(event.getWhoClicked().getInventory())) {
+            if (raw >= top.getSize()) {
+
+                event.setCancelled(true);
+
                 ItemStack clickedItem = event.getCurrentItem();
 
                 if (clickedItem != null && clickedItem.getType() != Material.AIR) {
@@ -36,6 +41,7 @@ public class GuiInteractionHandler implements Listener {
                     }
 
                     event.getWhoClicked().openInventory(nextGui.getInventory());
+                    return;
                 }
             }
         }
