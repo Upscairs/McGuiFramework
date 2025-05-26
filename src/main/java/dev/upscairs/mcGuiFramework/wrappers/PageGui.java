@@ -118,7 +118,7 @@ public class PageGui<E extends List<? extends ListableGuiObject>> extends Intera
     }
 
     @Override
-    public InventoryGui handleInvClick(int slot) {
+    public InventoryGui handleInvClick(int slot, ItemStack clickedItem) {
 
         if(slot == 45) {
             setPage(page - 1);
@@ -129,7 +129,7 @@ public class PageGui<E extends List<? extends ListableGuiObject>> extends Intera
             return this;
         }
         else {
-            return super.handleInvClick(slot);
+            return super.handleInvClick(slot, clickedItem);
         }
 
     }

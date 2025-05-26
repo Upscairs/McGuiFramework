@@ -114,7 +114,7 @@ public class ScrollGui<E extends List<? extends ListableGuiObject>> extends Inte
     }
 
     @Override
-    public InventoryGui handleInvClick(int slot) {
+    public InventoryGui handleInvClick(int slot, ItemStack clickedItem) {
         if(slot == 8) {
             setScrollOffset(scrollOffset - 1);
             return this;
@@ -124,7 +124,7 @@ public class ScrollGui<E extends List<? extends ListableGuiObject>> extends Inte
             return this;
         }
         else {
-            return super.handleInvClick(slot);
+            return super.handleInvClick(slot, clickedItem);
         }
     }
 

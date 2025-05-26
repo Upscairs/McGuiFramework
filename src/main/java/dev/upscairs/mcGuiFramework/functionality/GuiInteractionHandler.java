@@ -1,7 +1,6 @@
 package dev.upscairs.mcGuiFramework.functionality;
 
 import dev.upscairs.mcGuiFramework.base.InventoryGui;
-import dev.upscairs.mcGuiFramework.utility.PlayerInventoryClickReacting;
 import dev.upscairs.mcGuiFramework.wrappers.InteractableGui;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -21,60 +20,32 @@ public class GuiInteractionHandler implements Listener {
             return;
         }
 
-        //React to clicks on player inventory if Gui is reacting on this
-        if(event.getView().getTopInventory().getHolder() instanceof PlayerInventoryClickReacting clickReactGui) {
-
-            Inventory top = event.getView().getTopInventory();
-            int raw = event.getRawSlot();
-
-            if (raw >= top.getSize()) {
-
-                event.setCancelled(true);
-
-                ItemStack clickedItem = event.getCurrentItem();
-
-                if (clickedItem != null && clickedItem.getType() != Material.AIR) {
-                    InventoryGui nextGui = clickReactGui.onItemClick(clickedItem.clone());
-
-                    if(clickReactGui == null) {
-                        event.getWhoClicked().closeInventory();
-                    }
-
-                    event.getWhoClicked().openInventory(nextGui.getInventory());
-                    return;
-                }
-            }
-        }
-
-        //React to clicks on guis
-        if (event.getView().getTopInventory().getHolder() instanceof InventoryGui) {
+        //React to clicks when InteractbleGui
+        if (event.getView().getTopInventory().getHolder() instanceof InteractableGui gui) {
 
             event.setCancelled(true);
 
-            //Open sub-gui if possible
-            if (event.getClickedInventory().getHolder() instanceof InteractableGui) {
+            int raw = event.getRawSlot();
+            ItemStack clicked = event.getCurrentItem() == null
+                    ? new ItemStack(Material.AIR)
+                    : event.getCurrentItem().clone();
 
-                //If returned the same gui, it gets updated
-                InventoryGui gui = ((InteractableGui) event.getClickedInventory().getHolder()).handleInvClick(event.getSlot());
+            InventoryGui next = gui.handleInvClick(raw, clicked);
 
-                if(!(gui instanceof PreventCloseGui)) {
-                    //Null closes inventory
-                    if(gui == null) {
-                        event.getWhoClicked().closeInventory();
-                    }
-                    else {
-                        event.getWhoClicked().openInventory(gui.getInventory());
-                    }
+
+            if (!(gui instanceof PreventCloseGui)) {
+                //Null closes inventory
+                if (gui == null) {
+                    event.getWhoClicked().closeInventory();
+                } else {
+                    event.getWhoClicked().openInventory(gui.getInventory());
                 }
-
             }
 
         }
 
-
-
-
     }
+
 
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent event) {

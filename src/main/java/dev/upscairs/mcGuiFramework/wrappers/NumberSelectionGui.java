@@ -186,7 +186,7 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
     }
 
     @Override
-    public InventoryGui handleInvClick(int slot) {
+    public InventoryGui handleInvClick(int slot, ItemStack clickedItem) {
 
         if(slot >= 9 && slot <= 17) {
 
@@ -208,7 +208,7 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
 
         }
 
-        return super.handleInvClick(slot);
+        return super.handleInvClick(slot, clickedItem);
     }
 
 
