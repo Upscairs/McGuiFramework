@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class GuiInteractionHandler implements Listener {
@@ -33,12 +32,12 @@ public class GuiInteractionHandler implements Listener {
             InventoryGui next = gui.handleInvClick(raw, clicked);
 
 
-            if (!(gui instanceof PreventCloseGui)) {
+            if (!(next instanceof PreventCloseGui)) {
                 //Null closes inventory
-                if (gui == null) {
+                if (next == null) {
                     event.getWhoClicked().closeInventory();
                 } else {
-                    event.getWhoClicked().openInventory(gui.getInventory());
+                    event.getWhoClicked().openInventory(next.getInventory());
                 }
             }
 
