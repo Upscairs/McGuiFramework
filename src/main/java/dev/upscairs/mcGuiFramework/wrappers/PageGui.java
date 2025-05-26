@@ -71,8 +71,8 @@ public class PageGui<E extends List<? extends ListableGuiObject>> extends Intera
         return page;
     }
 
-    private void flushItems() {
-        for(int i = 0; i < getInventory().getSize(); i++) {
+    private void flushListedItems() {
+        for(int i = 0; i < getInventory().getSize()-9; i++) {
             setItem(i, new ItemStack(Material.AIR));
         }
     }
@@ -84,7 +84,7 @@ public class PageGui<E extends List<? extends ListableGuiObject>> extends Intera
      */
     public void placeItems() {
 
-        flushItems();
+        flushListedItems();
 
         if(page > 0) {
             setItem(45, generateScrollLeftItem());

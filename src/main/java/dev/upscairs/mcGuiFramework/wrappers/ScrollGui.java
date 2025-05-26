@@ -61,8 +61,11 @@ public class ScrollGui<E extends List<? extends ListableGuiObject>> extends Inte
         return scrollOffset;
     }
 
-    private void flushItems() {
+    private void flushListedItems() {
         for (int i = 0; i < getInventory().getSize(); i++) {
+            if(i % 9 == 8) {
+                continue;
+            }
             setItem(i, new ItemStack(Material.AIR));
         }
     }
@@ -75,7 +78,7 @@ public class ScrollGui<E extends List<? extends ListableGuiObject>> extends Inte
     @Override
     public void placeItems() {
 
-        flushItems();
+        flushListedItems();
         if(scrollOffset > 0) {
             setItem(8, generateScrollUpItem());
         }
