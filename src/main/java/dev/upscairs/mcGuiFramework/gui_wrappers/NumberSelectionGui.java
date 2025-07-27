@@ -2,6 +2,7 @@ package dev.upscairs.mcGuiFramework.gui_wrappers;
 
 import dev.upscairs.mcGuiFramework.McGuiFramework;
 import dev.upscairs.mcGuiFramework.base.InventoryGui;
+import dev.upscairs.mcGuiFramework.functionality.ClickHandler;
 import dev.upscairs.mcGuiFramework.functionality.PreventCloseGui;
 import dev.upscairs.mcGuiFramework.utility.InvGuiUtils;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -17,6 +18,8 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
     int number;
     int maxNumber;
     int minNumber;
+
+    private ClickHandler postInternalClickHandler;
 
     //Skulls from 0 to 25
     private static final ItemStack[] numberItems = {
@@ -208,11 +211,19 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
             McGuiFramework.getGuiSounds().playClickSound(clickingPlayer);
 
             setNumberItems();
+
+            postInternalClickHandler.handle(slot, clickedItem, this);
+
             return new PreventCloseGui();
 
         }
 
         return super.handleInvClick(slot, clickedItem, clickingPlayer);
+    }
+
+    public InteractableGui onPostInternalClick(ClickHandler postInternalClickHandler) {
+        this.postInternalClickHandler = postInternalClickHandler;
+        return this;
     }
 
 
