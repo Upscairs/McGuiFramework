@@ -1,7 +1,7 @@
 package dev.upscairs.mcGuiFramework.functionality;
 
 import dev.upscairs.mcGuiFramework.base.InventoryGui;
-import dev.upscairs.mcGuiFramework.wrappers.InteractableGui;
+import dev.upscairs.mcGuiFramework.gui_wrappers.InteractableGui;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,8 +29,7 @@ public class GuiInteractionHandler implements Listener {
                     ? new ItemStack(Material.AIR)
                     : event.getCurrentItem().clone();
 
-            InventoryGui next = gui.handleInvClick(raw, clicked);
-
+            InventoryGui next = gui.handleInvClick(raw, clicked, event.getWhoClicked());
 
             if (!(next instanceof PreventCloseGui)) {
                 //Null closes inventory

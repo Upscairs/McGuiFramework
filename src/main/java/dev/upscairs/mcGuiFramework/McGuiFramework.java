@@ -1,26 +1,16 @@
 package dev.upscairs.mcGuiFramework;
 
-import dev.upscairs.mcGuiFramework.base.ItemDisplayGui;
 import dev.upscairs.mcGuiFramework.functionality.GuiInteractionHandler;
-import dev.upscairs.mcGuiFramework.utility.ListableItemStack;
-import dev.upscairs.mcGuiFramework.wrappers.InteractableGui;
-import dev.upscairs.mcGuiFramework.wrappers.NumberSelectionGui;
-import dev.upscairs.mcGuiFramework.wrappers.PageGui;
-import dev.upscairs.mcGuiFramework.wrappers.ScrollGui;
+import dev.upscairs.mcGuiFramework.utility.GuiSounds;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class McGuiFramework extends JavaPlugin {
 
     private static JavaPlugin plugin;
     private static boolean isRegistered = false;
+
+    private static GuiSounds guiSounds = new GuiSounds();
 
     /**
      *
@@ -52,6 +42,14 @@ public final class McGuiFramework extends JavaPlugin {
             throw new IllegalStateException("McGuiFramework not initalized.");
         }
 
+    }
+
+    public static void playSounds(boolean playSounds) {
+        guiSounds.playSounds(playSounds);
+    }
+
+    public static GuiSounds getGuiSounds() {
+        return guiSounds;
     }
 
 

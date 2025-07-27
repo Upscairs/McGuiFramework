@@ -1,11 +1,13 @@
-package dev.upscairs.mcGuiFramework.wrappers;
+package dev.upscairs.mcGuiFramework.gui_wrappers;
 
+import dev.upscairs.mcGuiFramework.McGuiFramework;
 import dev.upscairs.mcGuiFramework.base.InventoryGui;
 import dev.upscairs.mcGuiFramework.functionality.PreventCloseGui;
 import dev.upscairs.mcGuiFramework.utility.InvGuiUtils;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -186,7 +188,7 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
     }
 
     @Override
-    public InventoryGui handleInvClick(int slot, ItemStack clickedItem) {
+    public InventoryGui handleInvClick(int slot, ItemStack clickedItem, HumanEntity clickingPlayer) {
 
         if(slot >= 9 && slot <= 17) {
 
@@ -203,12 +205,14 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
             if(number < minNumber) number = minNumber;
             if(number > maxNumber) number = maxNumber;
 
+            McGuiFramework.getGuiSounds().playClickSound(clickingPlayer);
+
             setNumberItems();
             return new PreventCloseGui();
 
         }
 
-        return super.handleInvClick(slot, clickedItem);
+        return super.handleInvClick(slot, clickedItem, clickingPlayer);
     }
 
 

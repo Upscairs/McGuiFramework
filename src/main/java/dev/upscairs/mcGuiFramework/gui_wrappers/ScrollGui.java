@@ -1,9 +1,10 @@
-package dev.upscairs.mcGuiFramework.wrappers;
+package dev.upscairs.mcGuiFramework.gui_wrappers;
 
 import dev.upscairs.mcGuiFramework.base.InventoryGui;
 import dev.upscairs.mcGuiFramework.utility.InvGuiUtils;
 import dev.upscairs.mcGuiFramework.utility.ListableGuiObject;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -117,7 +118,7 @@ public class ScrollGui<E extends List<? extends ListableGuiObject>> extends Inte
     }
 
     @Override
-    public InventoryGui handleInvClick(int slot, ItemStack clickedItem) {
+    public InventoryGui handleInvClick(int slot, ItemStack clickedItem, HumanEntity clickingPlayer) {
         if(slot == 8) {
             setScrollOffset(scrollOffset - 1);
             return this;
@@ -127,7 +128,7 @@ public class ScrollGui<E extends List<? extends ListableGuiObject>> extends Inte
             return this;
         }
         else {
-            return super.handleInvClick(slot, clickedItem);
+            return super.handleInvClick(slot, clickedItem, clickingPlayer);
         }
     }
 

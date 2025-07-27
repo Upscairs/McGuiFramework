@@ -1,4 +1,4 @@
-package dev.upscairs.mcGuiFramework.wrappers;
+package dev.upscairs.mcGuiFramework.gui_wrappers;
 
 import dev.upscairs.mcGuiFramework.McGuiFramework;
 import dev.upscairs.mcGuiFramework.base.InventoryGui;

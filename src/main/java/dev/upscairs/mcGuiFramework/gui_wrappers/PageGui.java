@@ -1,9 +1,11 @@
-package dev.upscairs.mcGuiFramework.wrappers;
+package dev.upscairs.mcGuiFramework.gui_wrappers;
 
+import dev.upscairs.mcGuiFramework.McGuiFramework;
 import dev.upscairs.mcGuiFramework.base.InventoryGui;
 import dev.upscairs.mcGuiFramework.utility.InvGuiUtils;
 import dev.upscairs.mcGuiFramework.utility.ListableGuiObject;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -118,18 +120,20 @@ public class PageGui<E extends List<? extends ListableGuiObject>> extends Intera
     }
 
     @Override
-    public InventoryGui handleInvClick(int slot, ItemStack clickedItem) {
+    public InventoryGui handleInvClick(int slot, ItemStack clickedItem, HumanEntity clickingPlayer) {
 
         if(slot == 45) {
             setPage(page - 1);
+            McGuiFramework.getGuiSounds().playClickSound(clickingPlayer);
             return this;
         }
         else if(slot == 53) {
             setPage(page + 1);
+            McGuiFramework.getGuiSounds().playClickSound(clickingPlayer);
             return this;
         }
         else {
-            return super.handleInvClick(slot, clickedItem);
+            return super.handleInvClick(slot, clickedItem, clickingPlayer);
         }
 
     }
