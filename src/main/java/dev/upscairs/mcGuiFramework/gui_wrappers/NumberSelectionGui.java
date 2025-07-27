@@ -214,9 +214,9 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
 
             setNumberItems();
 
-            postInternalClickHandler.run();
+            if(postInternalClickHandler != null) postInternalClickHandler.run();
 
-            return new PreventCloseGui();
+            return this;
 
         }
 
