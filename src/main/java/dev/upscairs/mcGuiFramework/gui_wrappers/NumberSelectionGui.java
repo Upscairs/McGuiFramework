@@ -13,13 +13,15 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.function.Consumer;
+
 public class NumberSelectionGui extends InteractableGui implements InventoryHolder {
 
     int number;
     int maxNumber;
     int minNumber;
 
-    private ClickHandler postInternalClickHandler;
+    private Runnable postInternalClickHandler;
 
     //Skulls from 0 to 25
     private static final ItemStack[] numberItems = {
@@ -212,7 +214,7 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
 
             setNumberItems();
 
-            postInternalClickHandler.handle(slot, clickedItem, this);
+            postInternalClickHandler.run();
 
             return new PreventCloseGui();
 
@@ -221,7 +223,7 @@ public class NumberSelectionGui extends InteractableGui implements InventoryHold
         return super.handleInvClick(slot, clickedItem, clickingPlayer);
     }
 
-    public InteractableGui onPostInternalClick(ClickHandler postInternalClickHandler) {
+    public InteractableGui onPostInternalClick(Runnable postInternalClickHandler) {
         this.postInternalClickHandler = postInternalClickHandler;
         return this;
     }
